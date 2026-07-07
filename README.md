@@ -181,10 +181,4 @@ Upload a CSV file for AI-powered CRM extraction.
 | `possession_time` | Property possession time |
 | `description` | Additional description |
 
----
 
-## Submission
-
-- **Position:** Software Developer Intern
-- **Submitted to:** varun@groweasy.ai
-- **Deadline:** 12 July 2026

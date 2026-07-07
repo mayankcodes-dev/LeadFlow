@@ -1,9 +1,15 @@
-# LeadFlow — AI-Powered CSV Importer
-
-> Intelligently maps any CSV format into GrowEasy CRM fields using AI
-
-**Live Demo:** https://leadflow.mayankcodes.dev  
-**GitHub:** https://github.com/mayankcodes-dev/LeadFlow
+<div align="center">
+  <img src="./logo.png" alt="LeadFlow Logo" width="120" />
+  <h1>LeadFlow</h1>
+  <p><strong>AI-Powered CSV Importer for GrowEasy CRM</strong></p>
+  <p>Intelligently maps any CSV format into GrowEasy CRM fields using AI</p>
+  <br/>
+  <a href="https://leadflow.mayankcodes.dev"><strong>🌐 Live Demo</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/mayankcodes-dev/LeadFlow"><strong>📁 GitHub</strong></a>
+  &nbsp;·&nbsp;
+  <a href="mailto:varun@groweasy.ai"><strong>📧 GrowEasy</strong></a>
+</div>
 
 ---
 

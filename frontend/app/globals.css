@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ─────────────────────────────────────────────── */
+:root {
+  --bg-base:      #f8f8f8;
+  --bg-surface:   #ffffff;
+  --bg-elevated:  #f2f2f2;
+  --border:       rgba(0,0,0,0.08);
+  --border-strong:rgba(0,0,0,0.14);
+  --text-primary: #0a0a0a;
+  --text-secondary:#555555;
+  --text-muted:   #999999;
+  --accent:       #ff6a00;
+  --accent-glow:  rgba(255,106,0,0.15);
+  --accent-hover: #ff8533;
+}
+
+.dark {
+  --bg-base:      #000000;
+  --bg-surface:   #0d0d0d;
+  --bg-elevated:  #161616;
+  --border:       rgba(255,255,255,0.06);
+  --border-strong:rgba(255,255,255,0.10);
+  --text-primary: #ffffff;
+  --text-secondary:rgba(255,255,255,0.55);
+  --text-muted:   rgba(255,255,255,0.28);
+  --accent:       #ff6a00;
+  --accent-glow:  rgba(255,106,0,0.12);
+  --accent-hover: #ff8533;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth dark mode transition on all elements */
+  * {
+    transition-property: background-color, border-color, color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
+  }
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────── */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; height: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 99px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+
+  /* Grok-style glow on focus */
+  .glow-focus:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg-base), 0 0 0 4px var(--accent);
+  }
+
+  /* Subtle noise texture overlay for dark surfaces */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* Orange accent underline animation */
+  .link-hover {
+    position: relative;
+  }
+  .link-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.2s ease;
+  }
+  .link-hover:hover::after { width: 100%; }
+}
+
+/* ─── Custom animations ──────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50%       { box-shadow: 0 0 20px 4px var(--accent-glow); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.animate-fade-in    { animation: fadeIn 0.3s ease forwards; }
+.animate-slide-up   { animation: fadeUp 0.4s ease forwards; }
+.animate-pulse-soft { animation: pulseGlow 2.5s ease-in-out infinite; }
+
+/* Shimmer loading skeleton */
+.shimmer {
+  background: linear-gradient(90deg, var(--bg-elevated) 25%, var(--border-strong) 50%, var(--bg-elevated) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
